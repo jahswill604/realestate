@@ -1,0 +1,94 @@
+{% extends 'listings/base.html'%}
+{%load static%}
+{%block content%}
+<!-- templates/listings/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Listings</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        td{
+            padding: 0 10px;
+            text-align: center;
+            border-bottom: 1px solid rgb(39, 38, 38);
+        }
+    </style>
+</head>
+
+<section style="margin: 20px; ">
+  <div style="margin: 30px; text-align: center; padding-top: 60px;margin-bottom: 30px;">
+    <h2>
+      Areas Of High Demand
+    </h2>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. At quae amet laborum nihil natus nulla. Facere quia
+      veniam autem sit pariatur obcaecati officiis similique debitis ut, esse a, harum quis! Lorem ipsum dolor sit, amet
+      consectetur adipisicing elit. Ipsa fuga fugit eum nesciunt tempora ullam nihil eligendi commodi dolorum quo totam
+      eos qui illo consectetur aperiam, nam sunt laborum veniam.</p>
+  </div>
+
+  <div class="row">
+    <!-- Row 1 -->
+    {% for listing in listings %}
+    <div class="col-md-4 mb-4">
+        <a href="{% url 'single' item_id=listing.id %}" style="text-decoration: none; color: black;">
+            <div class="card" style="box-shadow: 1px 3px 4px 1px;">
+                <div class="card-header text-center">
+                    <h1 class="mb-0" style="font-size:24px;">{{ listing.title }}</h1>
+                </div>
+                <div class="card-body">
+                    <img src="{{ listing.photo_main.url}}" class="img-fluid" alt="Banner" width="100%" height="auto">
+                </div>
+                <div>
+                    <p style="padding: 20px; font-size: 20px; margin: 10px; background-color: rgb(190, 174, 174);">{{listing.description }}</p>
+                    <table style="margin: 10px; ">
+                        <tr>
+                            <td>
+                                Yearly Rent :
+                            </td>
+                            <td>
+                                ₦ {{listing.price}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Number of Birthrooms:
+                            </td>
+                            <td>
+                                {{listing.bathrooms}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Number Of bedRooms:
+                            </td>
+                            <td>
+                                {{listing.bedrooms}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- Passage: -->
+                            </td>
+                            <td>
+                                <!-- 2 -->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-info">Learn more</button>
+                    <button type="button" class="btn btn-success" style="float: inline-end;">Book now</button>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+
+
+{%endblock%}
+
+</html>
